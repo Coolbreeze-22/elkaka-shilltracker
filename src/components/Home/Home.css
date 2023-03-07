@@ -1,8 +1,8 @@
 @media only screen and (min-width : 300px) and (max-width: 500px)
 {.appGrid {
 display: grid;
-grid-template-columns: 90vw;
-margin: 10px
+grid-template-columns: 94vw;
+margin: 3px;
 }
 .appMain{margin-top: 20px;
 }

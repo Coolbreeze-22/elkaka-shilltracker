@@ -6,20 +6,33 @@ import { useContext } from "react";
 import { ShillTrackerContext } from "../context/context";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const Main = () => {
   const dispatch = useDispatch();
-  const {formData, setFormData, initial, setIsSearch, isSearch, setUserPosition} = useContext(ShillTrackerContext);
+  const { error } = useSelector((state) => state.users);
+  const {formData, setFormData, initial, setIsSearch, isSearch, setUserPosition, formError, setFormError} = useContext(ShillTrackerContext);
   let navigate = useNavigate();
 
-  const createPerson = () => {
-    // if (formData.name && formData.position && formData.amount && formData.date) {
-      
-    // };
-    const person = { ...formData, id: uuidv4(), currentAmount: formData.amount, oldId: "", deduct: "" };
-    dispatch({ type: "ADD_USER", payload: person });
-    setFormData(initial);
+  const handleCreate = () => {
+    if (!formData.name) {
+      setFormError("Add name")
     }
+    else if (!formData.position >=1 && !formData.position <=10) {
+      setFormError("Add position from 1 to 10")
+    }
+    else if (!formData.amount) {
+      setFormError("Add amount")
+    }
+    else if (!formData.date) {
+      setFormError("Add date")
+    }
+    else if (formData.name && formData.amount && formData.date && formData.position >=1 && formData.position <=10) {
+      const person = { ...formData, id: uuidv4(), currentAmount: formData.amount, oldId: "", deduct: "" };
+      dispatch({ type: "ADD_USER", payload: person });
+      setFormData(initial);
+      }
+    };
 
     useEffect(() => {
       if(isSearch){
@@ -34,7 +47,7 @@ const Main = () => {
     <div id="main">
       <div className="mainGrid">
         <div>Name</div> <div>Position</div>
-        <input list="browsers" name="browsers" id="browser" value={formData.name} className="name mainForm" onChange={(e) => {setFormData({ ...formData, name: e.target.value }); dispatch({type: "CLEAR_ERROR", payload: false}) }} />
+        <input list="browsers" name="browsers" id="browser" value={formData.name} className="name mainForm" onChange={(e) => {setFormData({ ...formData, name: e.target.value }); setFormError(); dispatch({type: "CLEAR_ERROR", payload: false}) }} />
         <datalist id="browsers">
           <option value="Alex" />
           <option value="Amanda" />
@@ -49,7 +62,7 @@ const Main = () => {
         </datalist>
 
         <input list="browsers1" name="browsers1" id="browser1" type="number" value={formData.position} className="position mainForm"
-            onChange={(e) => setFormData({ ...formData, position: e.target.value })} />
+            onChange={(e) => {setFormData({ ...formData, position: e.target.value }); setFormError()}} />
         <datalist id="browsers1">
           <option value="1" />
           <option value="2" />
@@ -69,21 +82,25 @@ const Main = () => {
           value={formData.amount}
           placeholder="Amount"
           className="amount mainForm"
-          onChange={(e) => setFormData({ ...formData, amount: e.target.value })}
+          onChange={(e) => {setFormData({ ...formData, amount: e.target.value }); setFormError()}}
         />
         <input
           type="date"
           value={formData.date}
           placeholder="date"
           className="date mainForm"
-          onChange={(e) => setFormData({ ...formData, date: e.target.value })}
+          onChange={(e) => {setFormData({ ...formData, date: e.target.value }); setFormError()}}
         />
       </div>
       <div className="mainGridBut">
-        <button className="mainButton mainForm" onClick={createPerson}>Create</button>
+        <button className="mainButton mainForm" onClick={handleCreate}>Create</button>
         <input className="input" type="text" value={isSearch} placeholder="search" onChange={(e) => setIsSearch(e.target.value)}/>
-        <button className="mainButton1 mainForm" onClick={() => {setFormData(initial); setIsSearch(""); setUserPosition(""); dispatch({type: "CLEAR_ERROR", payload: false})}}>Clear</button>
+        <button className="mainButton1 mainForm" onClick={() => {setFormData(initial); setIsSearch(""); setUserPosition(""); setFormError(); dispatch({type: "CLEAR_ERROR", payload: false})}}>Clear</button>
       </div>
+
+      <center>{formError}</center>
+      {error && <center>User already exist, kindly select another name</center>}
+
     </div>
   );
 };

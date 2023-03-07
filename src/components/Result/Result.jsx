@@ -54,6 +54,8 @@ const Result = () => {
   return (
     <div>
       <div className="result">
+      <center style={{color:"white", fontWeight:"1000", fontSize:"20px" }}>RESULT</center>
+
         <div className="resultGrid">
           <div className="resultItem">Name</div>
           <div className="resultItem">P</div>

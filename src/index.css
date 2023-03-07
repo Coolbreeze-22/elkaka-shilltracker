@@ -2,7 +2,10 @@
     background-image: radial-gradient(circle, white, rgb(12, 102, 114) );
 } */
 
+/* body{
+    background-image: radial-gradient(circle, rgb(5, 99, 33), rgb(255, 255, 255), rgb(99, 5, 5) );
+} */
+
 body{
-    /* background-color: white; */
-    background-image: radial-gradient(circle, rgb(5, 99, 33), rgb(193, 199, 105), rgb(99, 5, 5) );
+    background-color: black;
 }

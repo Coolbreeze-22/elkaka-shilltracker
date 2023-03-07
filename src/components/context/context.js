@@ -10,9 +10,12 @@ export const Provider = ({ children }) => {
     const [ error, setError ] = useState(false);
     const [ isSearch, setIsSearch ] = useState("");
     const [ userPosition, setUserPosition ] = useState("");
+    const [ formError, setFormError ] = useState("");
+    const [ deleteWarning, setDeleteWarning ] = useState();
+
     return(
         <ShillTrackerContext.Provider
-        value={{ formData, setFormData, initial, updatedId, setUpdatedId, error, setError, isSearch, setIsSearch, userPosition, setUserPosition }}
+        value={{ formData, setFormData, initial, updatedId, setUpdatedId, error, setError, isSearch, setIsSearch, userPosition, setUserPosition, formError, setFormError, deleteWarning, setDeleteWarning }}
         >
             {children}
         </ShillTrackerContext.Provider>

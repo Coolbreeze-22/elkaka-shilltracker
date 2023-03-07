@@ -4,10 +4,12 @@ import "./List.css";
 import { useContext } from "react";
 import { ShillTrackerContext } from "../context/context";
 import moment from "moment";
+import { Delete } from "@mui/icons-material";
+import { IconButton } from "@mui/material";
 
 const List = () => {
-  const { isSearch } = useContext(ShillTrackerContext);
-  const { history, error } = useSelector((state) => state.users);
+  const { isSearch, deleteWarning, setDeleteWarning } = useContext(ShillTrackerContext);
+  const { history } = useSelector((state) => state.users);
   const dispatch = useDispatch();
   
   const handleDelete = (h) => {
@@ -18,8 +20,7 @@ const List = () => {
 
   return (
     <div className="list">
-      {error && <div className="listError">User already exist, kindly select another name</div>}
-      <h3><center>HISTORY</center></h3>
+      <center style={{color:"white", fontWeight:"1000", fontSize:"20px" }}>HISTORY</center>
 
       <div className="listGrid">
         <div className="listItem">Name</div>
@@ -38,8 +39,12 @@ const List = () => {
             <div className="listItem">{h.amount}</div>
             <div className="listItem">{h.currentAmount}</div>
             <div className="listItem">{moment(h.date).format("MM/DD/YYYY")}</div>
-            <button className={h?.oldId?.length ? "listButton" : "listButton1" } type="submit" onClick={() => handleDelete(h)} >D</button>
+            <IconButton className={h?.oldId?.length ? "listButton" : "listButton1" } type="submit" onClick={() => setDeleteWarning(h.id) } ><Delete className={h?.oldId?.length ? "listButton" : "listButton1"} /></IconButton>
           </div>
+          {deleteWarning === h.id && <div className="listWarning" style={{marginTop:"5px", textAlign:"right"}}> <span style={{fontWeight:"bolder", color:"black"}}>Delete?</span>
+          <button  type="submit" onClick={()=> setDeleteWarning()} style={{backgroundColor:'green', color:"white", marginLeft: "5px"}}>No</button>
+          <button  type="submit" onClick={()=> {handleDelete(h); setDeleteWarning()}} style={{backgroundColor:'red', color:"white", margin: "0px 10px 0px 10px"}}>Yes</button></div>}
+            
         </div>
       ))}
       </div>

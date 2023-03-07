@@ -6,7 +6,6 @@ const users = (general={user:[], history:[], error:false}, action) => {
     const item = general.user.find((u) => u.name === action.payload.name)
     if(item) {
       const error = { ...general, error: true}
-      console.log(error);
       return error;
     }
     else {
@@ -19,23 +18,6 @@ const users = (general={user:[], history:[], error:false}, action) => {
     return all;
   }
 }
-
-  // else if (action.type === "DELETE_USER") {
-  //   const item = general.user.find((u) => u.id === action.payload.oldId);
-  //   if(item) { item.currentAmount = Number(item.currentAmount) + Number(action.payload.deduct)
-  //   }
-  //   else if (general.history.find((h) => h.id === action.payload.id) {
-  //     const history = { ...general, history:general.history.filter((h) => h.id !== action.payload.id)};
-  //     return history;
-  //   }
-  //   else if (general.user.find((u) => u.oldId === action.payload.id) {
-  //     const history = { ...general, history:general.history.filter((h) => h.oldId !== action.payload.id),
-  //                                   user:general.user.filter((u) => u.id !== action.payload.id)}
-  //     return history;
-  //   }
-  //   // localStorage.setItem("user", JSON.stringify(user));
-    
-  // } 
 
 
   else if (action.type === "DELETE_USER") {

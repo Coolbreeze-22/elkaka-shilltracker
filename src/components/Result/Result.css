@@ -1,10 +1,14 @@
-/* .result {
-background-color: white;} */
+.result {
+/* background-color: rgb(12, 100, 46); */
+background-image: radial-gradient(circle, white, rgb(12, 100, 46));
+padding: 5px 10px 10px 10px;
+}
+
 @media only screen and (min-width : 300px) and (max-width: 500px)
 {.resultGrid {
     display: grid;
     grid-template-columns: 30% 15% 25% 15% 15%;
-    background-color: rgb(31, 14, 131);
+    background-color: rgb(12, 100, 46);
     color: white;
     height: 40px;
     margin-bottom: 10px;
@@ -13,7 +17,7 @@ background-color: white;} */
   .resultGrid1 {
       display: grid;
       grid-template-columns: 30% 15% 25% 15% 15%;
-      margin-bottom: 5px;
+      margin-top: 2px;
     }
 }
 
@@ -22,9 +26,9 @@ background-color: white;} */
 {.resultGrid {
   display: grid;
   grid-template-columns: 30% 15% 25% 15% 15%;
-  background-color: rgb(31, 14, 131);
+  background-color: rgb(12, 100, 46);
   color: white;
-  /* font-weight: bolder; */
+  font-weight: bolder;
   height: 50px;
   margin-bottom: 10px;
   border-radius: 10px;
@@ -32,7 +36,7 @@ background-color: white;} */
   .resultGrid1 {
     display: grid;
     grid-template-columns: 30% 15% 25% 15% 15%;
-    margin-bottom: 5px;
+    margin-top: 2px;
   }
 }
 
@@ -42,10 +46,9 @@ background-color: white;} */
 }
 .resultItem1 {
   background-color: rgb(255, 255, 255);
-  /* color: white; */
   padding: 5px;
-  border:5px solid rgb(31, 14, 131);
-  border-radius: 10px;
+  border-right: 1px solid rgb(12, 100, 46);
+  /* border-radius: 3px; */
   font-size: 17px;
 }
 .resultInput{
