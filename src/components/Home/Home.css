@@ -1,0 +1,20 @@
+@media only screen and (min-width : 300px) and (max-width: 500px)
+{.appGrid {
+display: grid;
+grid-template-columns: 90vw;
+margin: 10px
+}
+.appMain{margin-top: 20px;
+}
+.appResultBig{display: none;}}
+
+
+@media only screen and (min-width : 501px) and (max-width: 1000000px)
+{.appGrid {margin: 20px;
+    display: grid;
+    grid-template-columns: 45vw 45vw;
+    column-gap: 5vw;
+  }
+  .appResultSmall{display: none;}
+}
+

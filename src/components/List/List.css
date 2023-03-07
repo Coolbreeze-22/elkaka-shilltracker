@@ -1,0 +1,57 @@
+.list{
+    margin-top: 10px;
+}
+.listGrid {
+  display: grid;
+  grid-template-columns: 20% 10% 15% 15% 30% 10%  ;
+  background-color: rgb(12, 100, 46);
+  color: white;
+  border-radius: 20px;
+  margin-bottom: 5px;
+  margin-top: -15px;
+}
+.listGrid1 {
+  display: grid;
+  grid-template-columns: 20% 5% 15% 15% 30% 10%  ;
+  background-color: rgb(0, 0, 0);
+  color: white;
+  border-radius: 20px;
+  margin-top: 10px;
+}
+.listItem {
+  padding: 5px;
+  font-size: 17px;
+}
+.listButton1{
+  background-color: rgb(134, 10, 10);
+  color: white;
+  border: 4px double white;
+  border-radius: 10px;
+}
+.listButton{
+  background-color: rgb(31, 14, 131);
+  color: white;
+  border: 4px double white;
+  border-radius: 10px;
+}
+.listError{
+  background-color: rgb(145, 3, 3);
+  color: white;
+  text-align: center;
+  margin: 0px 10px 5px 10px;
+}
+
+@media only screen and (min-width : 300px) and (max-width: 500px)
+{.list1{
+  overflow-y: auto;
+  max-height: 150px;
+  margin-bottom: 40px;
+}}
+
+
+@media only screen and (min-width : 501px) and (max-width: 1000000px)
+{.list1{
+  overflow-y: auto;
+  max-height: 250px;
+}
+}
