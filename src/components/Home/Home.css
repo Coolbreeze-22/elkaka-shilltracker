@@ -1,12 +1,37 @@
 @media only screen and (min-width : 300px) and (max-width: 500px)
 {.appGrid {
 display: grid;
-grid-template-columns: 94vw;
-margin: 3px;
+grid-template-columns: 95vw;
+margin: 5px;
+margin-left: 7px;
+}
+.appResultSmall{margin-top: 60px;
 }
 .appMain{margin-top: 20px;
 }
-.appResultBig{display: none;}}
+.appNav{
+  background-image: radial-gradient(circle, black, rgb(122, 4, 4));
+  color: white;
+  position: fixed;
+  width: 100%;
+  height: 50px;
+  margin-top: -5px;
+  padding-top: 2px;
+  border-bottom: 3px solid rgb(0, 0, 0);
+
+}
+.appTermsSmall{
+  background-color: rgb(122, 4, 4);
+  color: white;
+  padding: 2px 0 2px 3px;
+  margin-top: 5px;
+  border: 2px solid black;
+  border-radius: 10px;
+}
+.appResultBig{display: none;}
+.appTermsBig{
+display: none;
+}}
 
 
 @media only screen and (min-width : 501px) and (max-width: 1000000px)
@@ -14,7 +39,45 @@ margin: 3px;
     display: grid;
     grid-template-columns: 45vw 45vw;
     column-gap: 5vw;
+    /* margin-top: 20px; */
   }
-  .appResultSmall{display: none;}
+  .appNav{
+    background-image: radial-gradient(circle, black, rgb(122, 4, 4));
+    color: white;
+    position: fixed;
+    width: 100%;
+    height: 50px;
+    margin-top: -20px;
+    padding-top: 2px;
+    border-bottom: 3px solid rgb(0, 0, 0);
+  }
+.appMainList{
+  margin-top: 45px;
 }
+.appResultBig{
+  margin-top: 45px;
+}
+.appTermsBig{
+  background-color: rgb(13, 102, 40);
+  color: white;
+  border: 2px solid black;
+  border-radius: 10px;
+  padding: 2px 0 2px 3px;
+  margin-top: 7px;
+}
+.appResultSmall{display: none;}
+.appTermsSmall{
+  display: none;
+}
+}
+
+ .appSnackBar{
+  background-color: rgb(13, 102, 40);
+  padding: 3px;
+  margin-right: 3px;
+  border-radius: 2px;
+  border: 1px solid white;
+  float: right;
+} 
+
 

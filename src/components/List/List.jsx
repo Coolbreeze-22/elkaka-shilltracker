@@ -8,13 +8,19 @@ import { Delete } from "@mui/icons-material";
 import { IconButton } from "@mui/material";
 
 const List = () => {
-  const { isSearch, deleteWarning, setDeleteWarning } = useContext(ShillTrackerContext);
+  const { isSearch, deleteWarning, setDeleteWarning, setSnackBar } = useContext(ShillTrackerContext);
   const { history } = useSelector((state) => state.users);
   const dispatch = useDispatch();
   
   const handleDelete = (h) => {
     dispatch({ type: "DELETE_USER", payload: h });
+    setSnackBar("Deleted successfully");
+      setTimeout(() => {
+        setSnackBar("");
+        // console.log("Timed events, waited 3 seconds")
+      }, 4000);
   };
+
   const searchUser = history.filter((h) => h.name.toLowerCase().includes(isSearch) || h.name.includes(isSearch))
   const changeHistory = isSearch ? searchUser : history; 
 
@@ -31,7 +37,7 @@ const List = () => {
       </div>
 
       <div className="list1">
-      {changeHistory?.map((h) => (
+      {changeHistory?.slice().sort((a,b)=> b.date>a.date ?1:-1).map((h) => (
         <div key={h.id} >
           <div className="listGrid1">
             <div className="listItem">{h.name}</div>
@@ -41,7 +47,7 @@ const List = () => {
             <div className="listItem">{moment(h.date).format("MM/DD/YYYY")}</div>
             <IconButton className={h?.oldId?.length ? "listButton" : "listButton1" } type="submit" onClick={() => setDeleteWarning(h.id) } ><Delete className={h?.oldId?.length ? "listButton" : "listButton1"} /></IconButton>
           </div>
-          {deleteWarning === h.id && <div className="listWarning" style={{marginTop:"5px", textAlign:"right"}}> <span style={{fontWeight:"bolder", color:"black"}}>Delete?</span>
+          {deleteWarning === h.id && <div className="listWarning" style={{marginTop:"5px", textAlign:"right"}}> <span style={{fontWeight:"bolder", color:"white"}}>Delete?</span>
           <button  type="submit" onClick={()=> setDeleteWarning()} style={{backgroundColor:'green', color:"white", marginLeft: "5px"}}>No</button>
           <button  type="submit" onClick={()=> {handleDelete(h); setDeleteWarning()}} style={{backgroundColor:'red', color:"white", margin: "0px 10px 0px 10px"}}>Yes</button></div>}
             

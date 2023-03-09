@@ -11,14 +11,14 @@ import { useSelector } from "react-redux";
 const Main = () => {
   const dispatch = useDispatch();
   const { error } = useSelector((state) => state.users);
-  const {formData, setFormData, initial, setIsSearch, isSearch, setUserPosition, formError, setFormError} = useContext(ShillTrackerContext);
+  const {formData, setFormData, initial, setIsSearch, isSearch, setUserPosition, formError, setFormError, setActiveEditButton, setSnackBar } = useContext(ShillTrackerContext);
   let navigate = useNavigate();
 
   const handleCreate = () => {
     if (!formData.name) {
       setFormError("Add name")
     }
-    else if (!formData.position >=1 && !formData.position <=10) {
+    else if (formData.position <1 || formData.position >10) {
       setFormError("Add position from 1 to 10")
     }
     else if (!formData.amount) {
@@ -31,7 +31,13 @@ const Main = () => {
       const person = { ...formData, id: uuidv4(), currentAmount: formData.amount, oldId: "", deduct: "" };
       dispatch({ type: "ADD_USER", payload: person });
       setFormData(initial);
+      setSnackBar("Created successfully");
+      setTimeout(() => {
+        setSnackBar("");
+        // console.log("Timed events, waited 3 seconds")
+      }, 4000);
       }
+
     };
 
     useEffect(() => {
@@ -47,7 +53,7 @@ const Main = () => {
     <div id="main">
       <div className="mainGrid">
         <div>Name</div> <div>Position</div>
-        <input list="browsers" name="browsers" id="browser" value={formData.name} className="name mainForm" onChange={(e) => {setFormData({ ...formData, name: e.target.value }); setFormError(); dispatch({type: "CLEAR_ERROR", payload: false}) }} />
+        <input list="browsers" name="browsers" id="browser" value={formData.name} className="mainForm" onChange={(e) => {setFormData({ ...formData, name: e.target.value }); setFormError(); dispatch({type: "CLEAR_ERROR", payload: false}) }} />
         <datalist id="browsers">
           <option value="Alex" />
           <option value="Amanda" />
@@ -95,7 +101,7 @@ const Main = () => {
       <div className="mainGridBut">
         <button className="mainButton mainForm" onClick={handleCreate}>Create</button>
         <input className="input" type="text" value={isSearch} placeholder="search" onChange={(e) => setIsSearch(e.target.value)}/>
-        <button className="mainButton1 mainForm" onClick={() => {setFormData(initial); setIsSearch(""); setUserPosition(""); setFormError(); dispatch({type: "CLEAR_ERROR", payload: false})}}>Clear</button>
+        <button className="mainButton1 mainForm" onClick={() => {setFormData(initial); setIsSearch(""); setUserPosition(); setFormError(); setActiveEditButton(); dispatch({type: "CLEAR_ERROR", payload: false})}}>Clear</button>
       </div>
 
       <center>{formError}</center>

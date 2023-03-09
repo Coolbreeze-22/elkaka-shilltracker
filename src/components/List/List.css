@@ -8,25 +8,29 @@
 @media only screen and (min-width : 501px) and (max-width: 1000000px)
 {.list1{
   overflow-y: auto;
-  max-height: 250px;
+  max-height: 230px;
 }
 }
 .list{
   /* background-color: rgb(134, 10, 10); */
   background-image: radial-gradient(circle, black, rgb(122, 4, 4));
   margin-top: 20px;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
   padding-top: 5px;
-  padding-bottom: 20px;
+  padding-bottom: 5px;
+  border: 2px solid white;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px 5px rgb(122, 4, 4);
+
     
 }
 .listGrid {
   display: grid;
-  grid-template-columns: 20% 10% 15% 15% 30% 10%  ;
+  grid-template-columns: 20% 5% 15% 15% 30% 10%  ;
   background-color: rgb(0, 0, 0);
   color: white;
   border-radius: 20px;
-  margin-top: 10px;
+  margin-top: 5px;
 }
 .listGrid1 {
   display: grid;

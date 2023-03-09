@@ -1,6 +1,6 @@
+// JSON.parse(localStorage.getItem('general'))
 
-
-const users = (general={user:[], history:[], error:false}, action) => {
+const users = (general={user: JSON.parse(localStorage.getItem('user')) || [], history:JSON.parse(localStorage.getItem('history')) || [], error:false}, action) => {
 
   if (action.type === "ADD_USER") {
     const item = general.user.find((u) => u.name === action.payload.name)
@@ -11,11 +11,15 @@ const users = (general={user:[], history:[], error:false}, action) => {
     else {
       // const user = { ...general, user:[ ...general.user, {name:action.payload.name, position:action.payload.position, currentAmount:action.payload.currentAmount, amount:action.payload.amount, id:action.payload.id, date:action.payload.date}] };
       // const history = { ...general, history:[ ...general.history, action.payload] };
-      // const all = { ...general, user:[ ...general.user, action.payload], history:[ ...general.history, action.payload] };
-    const all = { ...general, user:[ ...general.user, {name:action.payload.name, position:action.payload.position, currentAmount:action.payload.currentAmount, amount:action.payload.amount, id:action.payload.id, date:action.payload.date}], 
+      // const myGeneral = { ...general, user:[ ...general.user, action.payload], history:[ ...general.history, action.payload] };
+      
+    const myGeneral = { ...general, user:[ ...general.user, {name:action.payload.name, position:action.payload.position, currentAmount:action.payload.currentAmount, amount:action.payload.amount, id:action.payload.id, date:action.payload.date}], 
     history:[ ...general.history, action.payload] };
-    // localStorage.setItem("user", JSON.stringify(user));
-    return all;
+
+    localStorage.setItem("user", JSON.stringify([...general.user,{name:action.payload.name, position:action.payload.position, currentAmount:action.payload.currentAmount, amount:action.payload.amount, id:action.payload.id, date:action.payload.date}]));
+    localStorage.setItem("history", JSON.stringify([...general.history,action.payload ]));
+
+    return myGeneral;
   }
 }
 
@@ -24,10 +28,12 @@ const users = (general={user:[], history:[], error:false}, action) => {
     const item = general.user.find((u) => u.id === action.payload.oldId);
     if(item) { item.currentAmount = Number(item.currentAmount) + Number(action.payload.deduct)
     }
-    const all = { ...general, history:general.history.filter((h) => action.payload.id? h.id !== action.payload.id & h.oldId !== action.payload.id:h),
-      user:general.user.filter((u) => u.id !== action.payload.id)}
-    // localStorage.setItem("user", JSON.stringify(user));
-    return (all);
+    const myGeneral = { ...general, history:general.history.filter((h) => action.payload.id? h.id !== action.payload.id & h.oldId !== action.payload.id:h), user:general.user.filter((u) => u.id !== action.payload.id)}
+
+    localStorage.setItem("history", JSON.stringify(general.history.filter((h) => action.payload.id? h.id !== action.payload.id & h.oldId !== action.payload.id:h)));
+    localStorage.setItem("user", JSON.stringify(general.user.filter((u) => u.id !== action.payload.id)));
+
+    return (myGeneral);
   } 
 
 
@@ -37,9 +43,11 @@ const users = (general={user:[], history:[], error:false}, action) => {
        item.amount=action.payload.amount; item.date=action.payload.date;
       const  { name, position, amount, currentAmount, date }=item;
       const itemHistory={name, position, amount, currentAmount, date, deduct:action.payload.deduct, oldId:action.payload.oldId, id:action.payload.id}
-      const history = { ...general, history:[ ...general.history,  itemHistory] };
-      // localStorage.setItem("users", JSON.stringify(item));
-      return history;
+      const myGeneral = { ...general, history:[ ...general.history,  itemHistory] };
+
+      localStorage.setItem("history", JSON.stringify([ ...general.history,  itemHistory] ));
+      
+      return myGeneral;
     };
   }
 

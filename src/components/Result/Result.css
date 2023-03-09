@@ -1,7 +1,10 @@
 .result {
-/* background-color: rgb(12, 100, 46); */
-background-image: radial-gradient(circle, white, rgb(12, 100, 46));
+background-image: radial-gradient(circle, black, rgb(12, 100, 46));
 padding: 5px 10px 10px 10px;
+border: 2px solid white;
+border-radius: 10px;
+box-shadow: 0px 0px 10px 5px rgb(12, 100, 46);
+
 }
 
 @media only screen and (min-width : 300px) and (max-width: 500px)
@@ -11,13 +14,23 @@ padding: 5px 10px 10px 10px;
     background-color: rgb(12, 100, 46);
     color: white;
     height: 40px;
-    margin-bottom: 10px;
+    margin-bottom: 5px;
     border-radius: 10px;
   }
   .resultGrid1 {
       display: grid;
       grid-template-columns: 30% 15% 25% 15% 15%;
       margin-top: 2px;
+    }
+    .resultPaginationSmall{
+      background-color: white;
+      margin: 10px 10px 0px 10px;
+      border-radius: 20px;
+      border: 2px dotted rgb(12, 100, 46);
+
+    }
+    .resultPaginationBig{
+      display: none;
     }
 }
 
@@ -37,6 +50,16 @@ padding: 5px 10px 10px 10px;
     display: grid;
     grid-template-columns: 30% 15% 25% 15% 15%;
     margin-top: 2px;
+  }
+  .resultPaginationBig{
+    background-color: rgb(12, 100, 46);
+    margin: 7px 20px 0px 20px;
+    padding: 5px;
+    border: 2px dotted white;
+    border-radius: 20px;
+  }
+  .resultPaginationSmall{
+    display: none;
   }
 }
 
@@ -60,7 +83,7 @@ padding: 5px 10px 10px 10px;
 .resultEditButt{
   font-style: italic;
   font-size: 10px;
-  background-color: rgb(31, 14, 131);
+  background-color: rgb(12, 100, 46);
   color: white;
   border:5px double rgb(255, 255, 255);
   border-radius: 10px;
@@ -68,6 +91,20 @@ padding: 5px 10px 10px 10px;
 .resultEditButt:hover {
   background-color: white;
   color: black;
-  border:5px double rgb(31, 14, 131);
+  border:5px double rgb(12, 100, 46);
   transition: 1s;}
 
+  .activeResultEditButt{
+    font-style: italic;
+    font-size: 10px;
+    background-color: rgb(122, 4, 4);
+    color: white;
+    border:5px double rgb(255, 255, 255);
+    border-radius: 10px;
+  }
+  .activeResultEditButt:hover {
+    background-color: white;
+    color: black;
+    border:5px double rgb(122, 4, 4);
+    transition: 1s;}
+  

@@ -12,10 +12,13 @@ export const Provider = ({ children }) => {
     const [ userPosition, setUserPosition ] = useState("");
     const [ formError, setFormError ] = useState("");
     const [ deleteWarning, setDeleteWarning ] = useState();
+    const [ activeEditButton, setActiveEditButton ] = useState();
+    const [ currentPage, setCurrentPage ] = useState(1);
+    const [ snackBar, setSnackBar ] = useState("");
 
     return(
         <ShillTrackerContext.Provider
-        value={{ formData, setFormData, initial, updatedId, setUpdatedId, error, setError, isSearch, setIsSearch, userPosition, setUserPosition, formError, setFormError, deleteWarning, setDeleteWarning }}
+        value={{ formData, setFormData, initial, updatedId, setUpdatedId, error, setError, isSearch, setIsSearch, userPosition, setUserPosition, formError, setFormError, deleteWarning, setDeleteWarning, activeEditButton, setActiveEditButton, currentPage, setCurrentPage, snackBar, setSnackBar }}
         >
             {children}
         </ShillTrackerContext.Provider>
